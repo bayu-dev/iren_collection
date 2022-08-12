@@ -226,35 +226,35 @@ class Penjualan extends BaseController
                 [
                     'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
-                    'id_akun'       => 111,
-                    'nominal'       => $total,
+                    'id_akun'       => 411,
+                    'nominal'       => $total_jurnal,
                     'posisi'        => 'd',
-                    'debet'         => $total,
+                    'debet'         => $total_jurnal,
                     'kredit'        => 0,
                     'reff'          => $id_penjualan,
                     'transaksi'     => 'Penjualan',
                     'id_transaksi'  => $id_transaksi['id_transaksi'],
                 ],
                 [
-                    'id_jurnal'     => $id_jurnalK,
+                    'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
                     'id_akun'       => 420,
-                    'nominal'       =>  $total - $total_jurnal,
-                    'posisi'        => 'k',
-                    'debet'         => 0,
-                    'kredit'        =>  $total - $total_jurnal,
+                    'nominal'       => $total - $total_jurnal,
+                    'posisi'        => 'd',
+                    'debet'         => $total - $total_jurnal,
+                    'kredit'        => 0,
                     'reff'          => $id_penjualan,
                     'transaksi'     => 'Penjualan',
                     'id_transaksi'  => $id_transaksi['id_transaksi'],
                 ],
                 [
-                    'id_jurnal'     => $id_jurnalK,
+                    'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
-                    'id_akun'       => 411,
-                    'nominal'       => $total_jurnal,
+                    'id_akun'       => 111,
+                    'nominal'       => $total,
                     'posisi'        => 'k',
                     'debet'         => 0,
-                    'kredit'        => $total_jurnal,
+                    'kredit'        => $total,
                     'reff'          => $id_penjualan,
                     'transaksi'     => 'Penjualan',
                     'id_transaksi'  => $id_transaksi['id_transaksi'],
@@ -267,23 +267,23 @@ class Penjualan extends BaseController
                 [
                     'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
-                    'id_akun'       => 111,
-                    'nominal'       => $total,
+                    'id_akun'       => 411,
+                    'nominal'       => $total_jurnal,
                     'posisi'        => 'd',
-                    'debet'         => $total,
+                    'debet'         => $total_jurnal,
                     'kredit'        => 0,
                     'reff'          => $id_penjualan,
                     'transaksi'     => 'Penjualan',
                     'id_transaksi'  => $id_transaksi['id_transaksi'],
                 ],
                 [
-                    'id_jurnal'     => $id_jurnalK,
+                    'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
-                    'id_akun'       => 411,
-                    'nominal'       => $total_jurnal,
+                    'id_akun'       => 111,
+                    'nominal'       => $total,
                     'posisi'        => 'k',
                     'debet'         => 0,
-                    'kredit'        => $total_jurnal,
+                    'kredit'        => $total,
                     'reff'          => $id_penjualan,
                     'transaksi'     => 'Penjualan',
                     'id_transaksi'  => $id_transaksi['id_transaksi'],
@@ -295,8 +295,6 @@ class Penjualan extends BaseController
 
         //insert jurnal kas dan penjualan
 
-        $id_jurnalD             = $this->jurnalModel->code_jurnal_IDD();
-        $id_jurnalK             = $this->jurnalModel->code_jurnal_IDK();
         //insert jurnal hpp dan persediaan barang dagang
         $jurnal2 = [
             [
@@ -312,7 +310,7 @@ class Penjualan extends BaseController
                 'id_transaksi'  => $id_transaksi['id_transaksi'],
             ],
             [
-                'id_jurnal'     => $id_jurnalK,
+                'id_jurnal'     => $id_jurnalD,
                 'tanggal'       => $newDate,
                 'id_akun'       => 113,
                 'nominal'       => $total_penjualan_diskon,
@@ -344,18 +342,6 @@ class Penjualan extends BaseController
         return view('penjualan/view_data_detail_penjualan', $data);
     }
 
-    public function detailOnline($id_penjualan)
-    {
-        $data = [
-            'title'                 => 'Data Detail Penjualan',
-            'detail_penjualan'      => $this->penjualanModel->getDetailPenjualan($id_penjualan),
-            'penjualan'             => $this->penjualanModel->getById($id_penjualan),
-            'order'                 => $this->penjualanModel->getDetailOrderOnline($id_penjualan)
-        ];
-        // dd($data);
-        return view('penjualan/view_data_detail_penjualan_online', $data);
-    }
-
     public function deleteDetail()
     {
         $id_barang                      = $this->request->getPost('id_barang');
@@ -366,74 +352,5 @@ class Penjualan extends BaseController
         session()->setFlashdata('success', 'Data Keranjang Berhasil Dihapus');
 
         return redirect()->to('/penjualan/addDetail');
-    }
-
-    public function addChart()
-    {
-        $id_penjualan       = $this->penjualanModel->code_penjualan_ID();
-        $newDate            = date("Y-m-d");
-        $id_barang               = $this->request->getPost('id_barang');
-        $jumlah_jual            = $this->request->getPost('jumlah_jual');
-        $harga_satuan           = $this->request->getPost('harga_satuan');
-
-        $jumlah_data = $this->penjualanModel->getCountData($id_penjualan);
-
-        // dd($jumlah_data);
-
-        if ($jumlah_data == 0) {
-
-            $data_penjualan = array(
-                'id_penjualan'                  => $id_penjualan,
-                'tanggal_penjualan'             => $newDate,
-            );
-
-            $this->penjualanModel->createPenjualan($data_penjualan);
-
-            $data_detail_penjualan = array(
-                'id_penjualan'          => $id_penjualan,
-                'id_barang'             => $id_barang,
-                'harga_satuan'          => $harga_satuan,
-                'jumlah_jual'           => $jumlah_jual,
-            );
-
-            $this->penjualanModel->createDetailPenjualan($data_detail_penjualan);
-        } else {
-            $data_detail_penjualan = array(
-                'id_penjualan'          => $id_penjualan,
-                'id_barang'             => $id_barang,
-                'harga_satuan'          => $harga_satuan,
-                'jumlah_jual'           => $jumlah_jual,
-            );
-
-            $this->penjualanModel->createDetailPenjualan($data_detail_penjualan);
-        }
-
-        session()->setFlashdata('success', 'Data barang Berhasil Ditambahkan ke Chart');
-        return redirect()->to('/home/detail/' . $id_barang);
-    }
-
-    public function konfirmasi()
-    {
-        $id_penjualan = $this->request->getPost('id_penjualan');
-        $data_status = array(
-            'status'                => 'Pesanan Diproses',
-        );
-        $this->penjualanModel->updatePenjualan($data_status, $id_penjualan);
-
-        session()->setFlashdata('success', 'Pesanan berhasil diproses');
-        return redirect()->to('/penjualan/detailOnline/' . $id_penjualan);
-    }
-
-    public function resi()
-    {
-        $id_penjualan = $this->request->getPost('id_penjualan');
-        $data_status = array(
-            'status'                => 'Pesanan telah dikirim',
-            'no_resi'               => $this->request->getPost('no_resi'),
-        );
-        $this->penjualanModel->updatePenjualan($data_status, $id_penjualan);
-
-        session()->setFlashdata('success', 'No Resi berhasil disimpan');
-        return redirect()->to('/penjualan/detailOnline/' . $id_penjualan);
     }
 }

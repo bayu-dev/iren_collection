@@ -27,13 +27,13 @@
                             $diskon = 0;
                             $total_akhir = 0;
                             foreach ($detail_penjualan as $pnj) :
-                                $total += ($pnj['hpp'] *  $pnj['jumlah_jual']);
+                                $total += ($pnj['harga_satuan'] *  $pnj['jumlah_jual']);
                             ?>
                                 <tr>
                                     <td> <?= $pnj['id_barang'] . '-' . $pnj['nama_barang'] ?> </td>
-                                    <td class="text-right"> <?= nominal($pnj['hpp']) ?> </td>
+                                    <td class="text-right"> <?= nominal($pnj['harga_satuan']) ?> </td>
                                     <td class="text-center"> <?= $pnj['jumlah_jual'] ?> </td>
-                                    <td class="text-right"> <?= nominal($pnj['hpp'] *  $pnj['jumlah_jual']) ?> </td>
+                                    <td class="text-right"> <?= nominal($pnj['harga_satuan'] *  $pnj['jumlah_jual']) ?> </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -44,7 +44,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" class="text-right">Diskon</td>
-                                <td colspan="2" class="text-right"><?= nominal($diskon = $total * 0.1) ?></td>
+                                <td colspan="2" class="text-right"><?= nominal($diskon = $total * 0.05) ?></td>
                             </tr>
                             <tr>
                                 <td colspan="3" class="text-right">Total Akhir</td>

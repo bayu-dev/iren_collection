@@ -108,6 +108,7 @@ class PenjualanModel extends Model
         $builder->join('penjualan', 'detail_penjualan.id_penjualan=penjualan.id_penjualan');
         $builder->join('barang', 'barang.id_barang=detail_penjualan.id_barang');
         $builder->where('detail_penjualan.id_penjualan', $id_penjualan);
+        $builder->orderBy('penjualan.id_penjualan', 'ASC');
         $query = $builder->get();
         return $query->getResultArray();
     }
@@ -120,6 +121,7 @@ class PenjualanModel extends Model
         $builder->join('barang', 'detail_penjualan.id_barang=barang.id_barang');
         $builder->where('month(tanggal_penjualan)', $month);
         $builder->where('year(tanggal_penjualan)', $year);
+        $builder->orderBy('penjualan.id_penjualan', 'ASC');
         $query = $builder->get();
         return $query->getResult();
     }

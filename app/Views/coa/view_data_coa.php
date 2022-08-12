@@ -31,7 +31,7 @@
                                 <th>Nama Akun</th>
                                 <th>Kategori Akun</th>
                                 <th>Posisi</th>
-                                <!-- <th class="text-center"><i class="fa fa-cog fa-spin"></i></th> -->
+                                <th class="text-center"><i class="fa fa-cog fa-spin"></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,12 +55,12 @@
                                             Kredit
                                         </td>
                                     <?php endif ?>
-                                    <!-- <td class="text-center">
+                                    <td class="text-center">
                                         <a type="button" data-toggle="modal" data-target="#edit<?= $akun['id_akun']; ?>"><i class="fa fa-edit fa-lg text-warning"></i></a>
-                                        <a type="button" data-toggle="modal" data-target="#delete<?= $akun['id_akun']; ?>">
+                                        <!-- <a type="button" data-toggle="modal" data-target="#delete<?= $akun['id_akun']; ?>">
                                             <i class="fa fa-trash fa-lg text-danger"></i>
-                                        </a>
-                                    </td> -->
+                                        </a> -->
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
 
@@ -110,6 +110,10 @@
                                 <option value="d">Debet</option>
                                 <option value="c">Kredit</option>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Saldo Awal</label>
+                            <input type="text" class="form-control" id="rupiah2" name="sa" placeholder="Saldo Awal" autocomplete="off" required value="<?= $akun['sa'] ?>">
                         </div>
                         <div class="mb-2 mt-1">
                             <div class="float-right d-none d-sm-block">
@@ -224,7 +228,10 @@
                                     </select>
                                 <?php } ?>
                             </div>
-                            <input type="hidden" class="form-control" id="rupiah2" name="sa" placeholder="Saldo Awal" autocomplete="off" required value="<?= $akun['sa'] ?>">
+                            <div class="mb-3">
+                                <label class="form-label">Saldo Awal</label>
+                                <input type="text" class="form-control" id="rupiah2" name="sa" placeholder="Saldo Awal" autocomplete="off" required value="<?= $akun['sa'] ?>">
+                            </div>
                             <div class="mb-2 mt-1">
                                 <div class="float-right d-none d-sm-block">
                                     <button href="#" class="btn btn-secondary" data-dismiss="modal"><i class="mdi mdi-close-thick fa-lg"></i> Batal</button>

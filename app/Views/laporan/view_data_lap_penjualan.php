@@ -75,7 +75,7 @@
 
                             <?php endforeach; ?>
                         </tbody>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -84,7 +84,7 @@
                                 <td class="text-center">Total</td>
                                 <td class="text-right">Rp <?= number_format($gtotal) ?></td>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                     </table>
                 </div>
                 <!-- /.box-content -->

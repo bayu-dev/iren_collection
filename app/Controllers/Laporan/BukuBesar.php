@@ -28,7 +28,8 @@ class BukuBesar extends BaseController
             'saldo_awal'            => 0,
             'date'                  => '',
             'year'                  => '',
-            'id_akun'               => ''
+            'id_akun'               => '',
+            'nama_akun'             => '',
         ];
         return view('laporan/view_data_buku_besar', $data);
     }
@@ -50,7 +51,8 @@ class BukuBesar extends BaseController
             'saldo_awal'            => $this->bukuBesarModel->getSaldoAwalBukuBesar($year, $month, $akun),
             'date'                  => $bulan,
             'year'                  => $year,
-            'id_akun'               => $akun
+            'id_akun'               => $akun,
+            'nama_akun'             => $this->coaModel->where('id_akun', $akun)->get()->getFirstRow()->nama_akun
         ];
         // dd($data);
         return view('laporan/view_data_buku_besar', $data);

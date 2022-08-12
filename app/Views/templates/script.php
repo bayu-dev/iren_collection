@@ -80,6 +80,7 @@
         });
         $('#datatable').dataTable({
             "pageLength": 50,
+            "order": false
         });
     });
 </script>

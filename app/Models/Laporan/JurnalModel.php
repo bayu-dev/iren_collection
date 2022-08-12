@@ -22,7 +22,7 @@ class JurnalModel extends Model
         $builder->join('akun', 'akun.id_akun=jurnal.id_akun');
         $builder->where('month(tanggal)', $month);
         $builder->where('year(tanggal)', $year);
-        $builder->orderBy('id_jurnal', 'ASC');
+        $builder->orderBy('id', 'ASC');
         $query = $builder->get();
         return $query->getResult();
     }

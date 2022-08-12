@@ -48,7 +48,13 @@
                         </div>
                         <hr>
                     </div>
-                    <table id="datatable" class="table table-striped table-bordered display" style="width:100%">
+                    <table class="table table-striped table-bordered display" style="width:100%">
+                        <p style="text-align:left;">
+                            Nomor Akun : <?= $id_akun ?>
+                            <span class="pr-3" style="float:right;">
+                                Nama Akun : <?= $nama_akun ?>
+                            </span>
+                        </p>
                         <thead>
                             <tr class="bg-dark-light">
                                 <th rowspan="2">Tanggal</th>

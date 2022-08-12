@@ -103,7 +103,7 @@ class Pembelian extends BaseController
                     'id_transaksi'  => $id_transaksi['id_transaksi'],
                 ],
                 [
-                    'id_jurnal'     => $id_jurnalK,
+                    'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
                     'id_akun'       => 111,
                     'nominal'       => $total_pembelian,
