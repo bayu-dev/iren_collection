@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2022 at 04:11 PM
+-- Generation Time: Aug 15, 2022 at 06:42 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.25
 
@@ -40,7 +40,7 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id_akun`, `kategori`, `nama_akun`, `sa`, `saldo_normal`) VALUES
-('111', 'Aktiva', 'Kas', 0, 'd'),
+('111', 'Aktiva', 'Kas', 10000000, 'd'),
 ('113', 'Aktiva', 'Persediaan Barang Dagang', 0, 'd'),
 ('411', 'Pendapatan', 'Penjualan', 0, 'k'),
 ('420', 'Pendapatan', 'Diskon Penjualan', 0, 'k'),
@@ -189,7 +189,9 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (214, '::1', 'pegawai@gmail.com', 1, '2022-08-04 09:05:14', 1),
 (215, '::1', 'pemilik@gmail.com', 30, '2022-08-04 09:07:01', 1),
 (216, '::1', 'pegawai@gmail.com', 1, '2022-08-04 09:09:37', 1),
-(217, '::1', 'pemilik@gmail.com', 30, '2022-08-04 09:10:56', 1);
+(217, '::1', 'pemilik@gmail.com', 30, '2022-08-04 09:10:56', 1),
+(218, '::1', 'pegawai@gmail.com', 1, '2022-08-14 23:16:23', 1),
+(219, '::1', 'pemilik@gmail.com', 30, '2022-08-14 23:26:23', 1);
 
 -- --------------------------------------------------------
 
@@ -249,7 +251,7 @@ CREATE TABLE `detail_pembelian` (
 --
 
 INSERT INTO `detail_pembelian` (`id_detail_pembelian`, `id_pembelian`, `id_barang`, `id_supplier`, `harga_satuan`, `jumlah_beli`, `id_stok`) VALUES
-(1, 'PMB-001', 'PRD-001', 'SUP-001', 500000, 10, 'STK-001'),
+(1, 'PMB-001', 'PRD-001', 'SUP-001', 500000, 5, 'STK-001'),
 (2, 'PMB-002', 'PRD-002', 'SUP-001', 600000, 5, 'STK-002');
 
 --
@@ -286,8 +288,7 @@ CREATE TABLE `detail_penjualan` (
 --
 
 INSERT INTO `detail_penjualan` (`id_detail_penjualan`, `id_penjualan`, `id_barang`, `id_pelanggan`, `id_user`, `jumlah_jual`, `hpp`, `harga_satuan`, `diskon`, `id_stok`) VALUES
-(1, 'PNJ-001', 'PRD-001', NULL, NULL, 2, 500000, 550000, 55000, 'STK-003'),
-(2, 'PNJ-002', 'PRD-002', NULL, NULL, 1, 600000, 660000, 0, 'STK-004');
+(1, 'PNJ-001', 'PRD-001', NULL, NULL, 2, 500000, 550000, 55000, 'STK-003');
 
 --
 -- Triggers `detail_penjualan`
@@ -324,19 +325,15 @@ CREATE TABLE `jurnal` (
 --
 
 INSERT INTO `jurnal` (`id`, `id_jurnal`, `tanggal`, `id_akun`, `nominal`, `posisi`, `debet`, `kredit`, `reff`, `transaksi`, `id_transaksi`) VALUES
-(1, 'JU-001', '2022-08-04', 113, 5000000, 'd', 5000000, 0, 'PMB-001', 'Pembelian', 1),
-(2, 'JU-002', '2022-08-04', 111, 5000000, 'k', 0, 5000000, 'PMB-001', 'Pembelian', 1),
-(3, 'JU-003', '2022-08-04', 113, 3000000, 'd', 3000000, 0, 'PMB-002', 'Pembelian', 2),
-(4, 'JU-004', '2022-08-04', 111, 3000000, 'k', 0, 3000000, 'PMB-002', 'Pembelian', 2),
-(5, 'JU-005', '2022-08-04', 111, 1100000, 'd', 1100000, 0, 'PNJ-001', 'Penjualan', 3),
-(6, 'JU-006', '2022-08-04', 420, 55000, 'k', 0, 55000, 'PNJ-001', 'Penjualan', 3),
-(7, 'JU-006', '2022-08-04', 411, 1045000, 'k', 0, 1045000, 'PNJ-001', 'Penjualan', 3),
-(8, 'JU-007', '2022-08-04', 511, 990000, 'd', 990000, 0, 'PNJ-001', 'Penjualan', 3),
-(9, 'JU-008', '2022-08-04', 113, 990000, 'k', 0, 990000, 'PNJ-001', 'Penjualan', 3),
-(10, 'JU-009', '2022-08-04', 111, 660000, 'd', 660000, 0, 'PNJ-002', 'Penjualan', 4),
-(11, 'JU-010', '2022-08-04', 411, 660000, 'k', 0, 660000, 'PNJ-002', 'Penjualan', 4),
-(12, 'JU-011', '2022-08-04', 511, 594000, 'd', 594000, 0, 'PNJ-002', 'Penjualan', 4),
-(13, 'JU-012', '2022-08-04', 113, 594000, 'k', 0, 594000, 'PNJ-002', 'Penjualan', 4);
+(14, 'JU-001', '2022-08-15', 113, 2500000, 'd', 2500000, 0, 'PMB-001', 'Pembelian', 1),
+(15, 'JU-001', '2022-08-15', 111, 2500000, 'k', 0, 2500000, 'PMB-001', 'Pembelian', 1),
+(16, 'JU-002', '2022-08-15', 113, 3000000, 'd', 3000000, 0, 'PMB-002', 'Pembelian', 2),
+(17, 'JU-002', '2022-08-15', 111, 3000000, 'k', 0, 3000000, 'PMB-002', 'Pembelian', 2),
+(18, 'JU-003', '2022-08-15', 411, 1045000, 'd', 1045000, 0, 'PNJ-001', 'Penjualan', 3),
+(19, 'JU-003', '2022-08-15', 420, 55000, 'd', 55000, 0, 'PNJ-001', 'Penjualan', 3),
+(20, 'JU-003', '2022-08-15', 111, 1100000, 'k', 0, 1100000, 'PNJ-001', 'Penjualan', 3),
+(21, 'JU-003', '2022-08-15', 511, 990000, 'd', 990000, 0, 'PNJ-001', 'Penjualan', 3),
+(22, 'JU-003', '2022-08-15', 113, 990000, 'k', 0, 990000, 'PNJ-001', 'Penjualan', 3);
 
 -- --------------------------------------------------------
 
@@ -384,10 +381,9 @@ CREATE TABLE `laporan_kartu_stok` (
 --
 
 INSERT INTO `laporan_kartu_stok` (`id`, `id_barang`, `tanggal`, `pembelian_unit`, `pembelian_harga`, `pembelian_total`, `penjualan_unit`, `penjualan_harga`, `penjualan_total`, `unit_akhir`, `harga_akhir`, `total_akhir`, `id_stok`) VALUES
-(1, 'PRD-001', '2022-08-04', 10, 500000, 5000000, NULL, NULL, NULL, 10, 500000, 5000000, 'STK-001'),
-(2, 'PRD-002', '2022-08-04', 5, 600000, 3000000, NULL, NULL, NULL, 5, 600000, 3000000, 'STK-002'),
-(3, 'PRD-001', '2022-08-04', NULL, NULL, NULL, 2, 500000, 1000000, 8, 500000, 4000000, 'STK-003'),
-(4, 'PRD-002', '2022-08-04', NULL, NULL, NULL, 1, 600000, 600000, 4, 600000, 2400000, 'STK-004');
+(5, 'PRD-001', '2022-08-15', 5, 500000, 2500000, NULL, NULL, NULL, 5, 500000, 2500000, 'STK-001'),
+(6, 'PRD-002', '2022-08-15', 5, 600000, 3000000, NULL, NULL, NULL, 5, 600000, 3000000, 'STK-002'),
+(7, 'PRD-001', '2022-08-15', NULL, NULL, NULL, 2, 500000, 1000000, 3, 500000, 1500000, 'STK-003');
 
 -- --------------------------------------------------------
 
@@ -431,8 +427,8 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_supplier`, `tanggal_pembelian`, `status`, `id_transaksi`) VALUES
-('PMB-001', 'SUP-001', '2022-08-04', 'LUNAS', 1),
-('PMB-002', 'SUP-001', '2022-08-04', 'LUNAS', 2);
+('PMB-001', 'SUP-001', '2022-08-15', 'LUNAS', 1),
+('PMB-002', 'SUP-001', '2022-08-15', 'LUNAS', 2);
 
 --
 -- Triggers `pembelian`
@@ -483,8 +479,7 @@ CREATE TABLE `penjualan` (
 --
 
 INSERT INTO `penjualan` (`id_penjualan`, `id_pelanggan`, `id_user`, `tanggal_penjualan`, `status`, `id_transaksi`) VALUES
-('PNJ-001', NULL, NULL, '2022-08-04', '-', 3),
-('PNJ-002', NULL, NULL, '2022-08-04', '-', 4);
+('PNJ-001', NULL, NULL, '2022-08-15', '-', 3);
 
 --
 -- Triggers `penjualan`
@@ -729,7 +724,7 @@ ALTER TABLE `auth_groups_users`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 
 --
 -- AUTO_INCREMENT for table `auth_tokens`
@@ -747,19 +742,19 @@ ALTER TABLE `detail_pembelian`
 -- AUTO_INCREMENT for table `detail_penjualan`
 --
 ALTER TABLE `detail_penjualan`
-  MODIFY `id_detail_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_detail_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jurnal`
 --
 ALTER TABLE `jurnal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `laporan_kartu_stok`
 --
 ALTER TABLE `laporan_kartu_stok`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `migrations`
