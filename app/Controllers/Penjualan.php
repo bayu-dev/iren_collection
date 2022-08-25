@@ -226,7 +226,7 @@ class Penjualan extends BaseController
                 [
                     'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
-                    'id_akun'       => 411,
+                    'id_akun'       => 111,
                     'nominal'       => $total_jurnal,
                     'posisi'        => 'd',
                     'debet'         => $total_jurnal,
@@ -250,7 +250,7 @@ class Penjualan extends BaseController
                 [
                     'id_jurnal'     => $id_jurnalD,
                     'tanggal'       => $newDate,
-                    'id_akun'       => 111,
+                    'id_akun'       => 411,
                     'nominal'       => $total,
                     'posisi'        => 'k',
                     'debet'         => 0,

@@ -15,7 +15,6 @@ class PenjualanModel extends Model
         $builder = $this->db->table('penjualan');
         $builder->select('penjualan.*');
         $builder->join('detail_penjualan', 'detail_penjualan.id_penjualan=penjualan.id_penjualan');
-        $builder->groupBy('penjualan.id_penjualan');
         $query = $builder->get();
         return $query->getResultArray();
     }

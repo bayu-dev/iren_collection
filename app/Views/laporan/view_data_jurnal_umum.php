@@ -43,10 +43,9 @@
                     <table id="datatable" class="table table-striped table-bordered display" style="width:100%">
                         <thead>
                             <tr>
-                                <th>ID Jurnal</th>
                                 <th>Tanggal</th>
-                                <th>Akun</th>
-                                <th class=" text-center">Reff</th>
+                                <th>ID Akun</th>
+                                <th class=" text-center">No Akun</th>
                                 <th class="text-center">Debet</th>
                                 <th class="text-center">Kredit</th>
                             </tr>
@@ -61,9 +60,6 @@
                                 $total_kredit += $data_jurnal->kredit;
                             ?>
                                 <tr>
-                                    <td width="100">
-                                        <?= $data_jurnal->id_jurnal ?>
-                                    </td>
                                     <td width="100">
                                         <?= format_indo($data_jurnal->tanggal) ?>
                                     </td>
@@ -90,7 +86,6 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>

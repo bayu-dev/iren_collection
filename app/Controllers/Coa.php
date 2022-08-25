@@ -25,47 +25,17 @@ class Coa extends BaseController
 
     public function add()
     {
-        $id_akun = $this->coaModel->where('id_akun', $this->request->getPost('id_akun'))->get()->getFirstRow();
-        if ($id_akun) {
-            session()->setFlashdata('error', 'Nomor Akun sudah tersedia');
+        $data = array(
+            'id_akun' => $this->request->getPost('id_akun'),
+            'nama_akun' => $this->request->getPost('nama_akun'),
+            'kategori' => $this->request->getPost('kategori'),
+            'saldo_normal' => $this->request->getPost('saldo_normal'),
+            'sa' => $this->request->getPost('sa'),
+        );
+        $this->coaModel->createCoa($data);
+        session()->setFlashdata('success', 'Data COA Berhasil Ditambahkan');
 
-            return redirect()->to('/coa');
-            $nama_akun = $this->coaModel->where('nama_akun', $this->request->getPost('nama_akun'))->get()->getFirstRow();
-            if ($nama_akun) {
-                session()->setFlashdata('error', 'Nama Akun sudah tersedia');
-
-                return redirect()->to('/coa');
-            } else {
-                $data = array(
-                    'id_akun'           => $this->request->getPost('id_akun'),
-                    'nama_akun'         => $this->request->getPost('nama_akun'),
-                    'saldo_normal'      => $this->request->getPost('saldo_normal'),
-                    'sa' => $this->request->getPost('sa'),
-                );
-                $this->coaModel->createCoa($data);
-                session()->setFlashdata('success', 'Data COA Berhasil Ditambahkan');
-
-                return redirect()->to('/coa');
-            }
-        } else {
-            $nama_akun = $this->coaModel->where('nama_akun', $this->request->getPost('nama_akun'))->get()->getFirstRow();
-            if ($nama_akun) {
-                session()->setFlashdata('error', 'Nama Akun sudah tersedia');
-
-                return redirect()->to('/coa');
-            } else {
-                $data = array(
-                    'id_akun'           => $this->request->getPost('id_akun'),
-                    'nama_akun'         => $this->request->getPost('nama_akun'),
-                    'saldo_normal'      => $this->request->getPost('saldo_normal'),
-                    'sa' => $this->request->getPost('sa'),
-                );
-                $this->coaModel->createCoa($data);
-                session()->setFlashdata('success', 'Data COA Berhasil Ditambahkan');
-
-                return redirect()->to('/coa');
-            }
-        }
+        return redirect()->to('/coa');
     }
 
     public function edit()

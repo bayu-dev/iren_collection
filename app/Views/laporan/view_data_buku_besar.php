@@ -59,7 +59,6 @@
                             <tr class="bg-dark-light">
                                 <th rowspan="2">Tanggal</th>
                                 <th rowspan="2">Nama Akun</th>
-                                <th rowspan="2">No Akun</th>
                                 <th rowspan="2" class="text-center">Debet</th>
                                 <th rowspan="2" class="text-center">Kredit</th>
                                 <th colspan="2" class="text-center">Saldo </th>
@@ -73,7 +72,6 @@
                             <tr>
                                 <td>-</td>
                                 <td style="background-color: #eee">Saldo Awal</td>
-                                <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <?php
@@ -99,7 +97,6 @@
                                     echo "<tr>";
                                     echo "<td>" . $cacah['tanggal'] . "</td>";
                                     echo "<td>" . $cacah['transaksi'] . "</td>";
-                                    echo "<td>" . $cacah['id_jurnal'] . "</td>";
                                     $db = $db + $cacah['nominal'];
 
                                     //untuk posisi d c dari jurnal adalah debet / d
@@ -165,7 +162,6 @@
                             <tr>
                                 <td>-</td>
                                 <td style="background-color: #eee">Saldo Akhir</td>
-                                <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <?php
