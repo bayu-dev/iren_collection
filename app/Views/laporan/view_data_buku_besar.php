@@ -161,21 +161,22 @@
                             ?>
                         </tbody>
                         <tfoot>
+
                             <tr>
                                 <td>-</td>
-                                <td style='background-color: #eee'>Saldo Akhir</td>
+                                <td style="background-color: #eee">Saldo Akhir</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <td>-</td>
                                 <?php
-                                // if ($saldo_debet >= $cacah['nominal']) {
-                                if (strcmp($cacah['posisi'], 'd') == 0) {
-                                    // if (strcmp($posisi_saldo_normal, 'd') == 0) {
-                                    echo "<td style='background-color: #eee' class='text-right'> Rp " . nominal1((float)$saldo_akhir) . "</td>";
-                                    echo "<td style='background-color: ' >-</td>";
+                                $db = 0;
+                                $kr = 0;
+                                if ($posisi_saldo_normal == 'd') {
+                                    echo "<td class='text-right'>" . nominal((float)$saldo_akhir) . "</td>";
+                                    echo "<td>-</td>";
                                 } else {
-                                    echo "<td style='background-color: #black' >-</td>";
-                                    echo "<td style='background-color: #eee' class='text-right'> Rp " . nominal1((float)$saldo_akhir) . "</td>";
+                                    echo "<td>-</td>";
+                                    echo "<td style='background-color: #eee' class='text-right'>" . nominal((float)$saldo_akhir) . "</td>";
                                 }
                                 ?>
                             </tr>
